@@ -1,12 +1,16 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+const Home = () => <h1>Home Page</h1>;
+const Careers = () => <h1>Careers Page</h1>;
+
 function App() {
   return (
-    <div style={{ padding: "40px", background: "white", color: "black" }}>
-      <h1>SNAA Careers</h1>
-      <p>App is working.</p>
-      <p>
-        <a href="/careers">Go to Careers</a>
-      </p>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/careers" element={<Careers />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
