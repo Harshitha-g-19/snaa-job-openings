@@ -1,92 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
-  :root {
-    --background: 210 20% 98%;
-    --foreground: 220 30% 12%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 220 30% 12%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 30% 12%;
-
-    --primary: 220 60% 22%;
-    --primary-foreground: 40 100% 97%;
-
-    --secondary: 38 92% 55%;
-    --secondary-foreground: 220 60% 12%;
-
-    --muted: 210 20% 94%;
-    --muted-foreground: 220 10% 46%;
-
-    --accent: 38 92% 55%;
-    --accent-foreground: 220 60% 12%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 220 13% 88%;
-    --input: 220 13% 88%;
-    --ring: 220 60% 22%;
-
-    --radius: 0.75rem;
-
-    --success: 152 60% 40%;
-    --success-foreground: 0 0% 100%;
-
-    --warning: 38 92% 55%;
-    --warning-foreground: 220 60% 12%;
-
-    --sidebar-background: 220 60% 22%;
-    --sidebar-foreground: 210 20% 94%;
-    --sidebar-primary: 38 92% 55%;
-    --sidebar-primary-foreground: 220 60% 12%;
-    --sidebar-accent: 220 50% 30%;
-    --sidebar-accent-foreground: 210 20% 94%;
-    --sidebar-border: 220 50% 30%;
-    --sidebar-ring: 38 92% 55%;
-
-    --font-heading: 'Plus Jakarta Sans', sans-serif;
-    --font-body: 'DM Sans', sans-serif;
-  }
-
-  .dark {
-    --background: 220 30% 8%;
-    --foreground: 210 20% 94%;
-    --card: 220 30% 12%;
-    --card-foreground: 210 20% 94%;
-    --popover: 220 30% 12%;
-    --popover-foreground: 210 20% 94%;
-    --primary: 38 92% 55%;
-    --primary-foreground: 220 60% 12%;
-    --secondary: 220 50% 30%;
-    --secondary-foreground: 210 20% 94%;
-    --muted: 220 20% 18%;
-    --muted-foreground: 210 10% 60%;
-    --accent: 38 92% 55%;
-    --accent-foreground: 220 60% 12%;
-    --destructive: 0 62% 30%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 220 20% 22%;
-    --input: 220 20% 22%;
-    --ring: 38 92% 55%;
-  }
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-    font-family: var(--font-body);
-  }
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
-  }
+body {
+  background: white;
+  color: black;
+  font-family: Arial, sans-serif;
 }
