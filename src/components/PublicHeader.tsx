@@ -1,4 +1,3 @@
-import { Briefcase } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const PublicHeader = () => {
@@ -6,9 +5,11 @@ const PublicHeader = () => {
     <header className="border-b bg-card">
       <div className="container mx-auto flex items-center justify-between px-4 py-4">
         <Link to="/" className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
-            <Briefcase className="h-5 w-5 text-primary-foreground" />
-          </div>
+          <img
+            src="/snaa-logo.jpg"
+            alt="SNAA Business Processing Centre"
+            className="h-10 w-10 object-contain rounded"
+          />
           <div>
             <h1 className="font-heading text-lg font-bold text-foreground leading-tight">
               SNAA Business Processing Center
@@ -24,7 +25,6 @@ const PublicHeader = () => {
           <Link to="/careers" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
             Careers
           </Link>
-          {/* HR Login intentionally removed from public nav — accessible at /hr-login directly */}
         </nav>
       </div>
     </header>
