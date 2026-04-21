@@ -275,13 +275,13 @@ export default function Index() {
                 fontSize: "clamp(2.5rem,6vw,4.5rem)", fontWeight: 800,
                 color: "#fff", lineHeight: 1.1, marginBottom: 8,
               }}>
-                SNAA Careers
+                SNAA Business Processing Centre pvt. ltd.
               </h1>
               <h2 className="snaa-display fu fu3" style={{
                 fontSize: "clamp(1.4rem,3.5vw,2.6rem)", fontWeight: 700,
                 color: "#93c5fd", marginBottom: 24,
               }}>
-                Job Openings for Freshers
+                Mangalore
               </h2>
 
               <p className="fu fu4" style={{
