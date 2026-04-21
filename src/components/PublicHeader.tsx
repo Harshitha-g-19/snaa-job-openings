@@ -8,7 +8,7 @@ const PublicHeader = () => {
           <img
             src="/snaa-logo.jpg"
             alt="SNAA Business Processing Centre"
-            className="h-10 w-10 object-contain rounded"
+            className="h-16 w-16 object-contain rounded"
           />
           <div>
             <h1 className="font-heading text-lg font-bold text-foreground leading-tight">
