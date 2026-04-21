@@ -12,30 +12,32 @@ import {
   TrendingUp,
   Briefcase,
   CheckCircle2,
+  Award,
+  Layers3,
 } from "lucide-react";
 
 const stats = [
   { label: "Established", value: "2000", sub: "Dubai, UAE" },
   { label: "Facility Area", value: "135K", sub: "Sq. Ft." },
   { label: "Production Capacity", value: "30K+", sub: "Tons / Year" },
-  { label: "Annual Fastener Output", value: "25K", sub: "Metric Tons" },
+  { label: "Fastener Output", value: "25K", sub: "Metric Tons" },
 ];
 
 const divisions = [
   {
     icon: Factory,
     title: "Structural Steel Manufacturing",
-    desc: "Production of threaded rods, U-bolts, anchor bolts, hex nuts, washers, and industrial fasteners with consistent quality standards.",
+    desc: "Manufacturing threaded rods, U-bolts, anchor bolts, hex nuts, washers, and industrial fastening products with dependable quality and scale.",
   },
   {
     icon: Building2,
     title: "Steel Stockist & Services",
-    desc: "A trusted ISO-certified structural steel stockist in the GCC, supplying plates, beams, sections, angles, flat bars, and round bars.",
+    desc: "A recognized ISO-certified structural steel stockist in the GCC, supplying plates, beams, sections, angles, flat bars, and round bars.",
   },
   {
     icon: TrendingUp,
     title: "Deformed Steel Bars",
-    desc: "Reliable supply of deformed steel bars conforming to BS 4449 Grade B500B, supported by large-scale cut-to-length capacity.",
+    desc: "Supplying deformed steel bars conforming to BS 4449 Grade B500B with strong annual cut-to-length production capability.",
   },
 ];
 
@@ -43,17 +45,17 @@ const whyJoin = [
   {
     icon: Globe,
     title: "International Exposure",
-    desc: "Be part of a team supporting business operations across the UAE, Qatar, and the wider GCC region.",
+    desc: "Work in an environment that supports operations across the UAE, Qatar, and the broader GCC region.",
   },
   {
     icon: Users,
-    title: "People-Centered Culture",
-    desc: "Grow in a collaborative work environment that values mentorship, inclusion, and continuous learning.",
+    title: "Professional Culture",
+    desc: "Grow within a collaborative workplace that values accountability, support, and continuous learning.",
   },
   {
     icon: Shield,
-    title: "Stability & Career Growth",
-    desc: "Build your future with a well-established organization backed by over two decades of industry success.",
+    title: "Stability & Growth",
+    desc: "Build your future with a well-established organization backed by decades of industry presence.",
   },
 ];
 
@@ -82,235 +84,348 @@ export default function Index() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap');
 
-        .snaa-root {
-          font-family: 'Inter', sans-serif;
-          background: #ffffff;
-          color: #0f172a;
+        :root{
+          --navy:#0f172a;
+          --blue:#1d4ed8;
+          --blueDark:#1e3a8a;
+          --light:#f8fafc;
+          --muted:#64748b;
+          --gold:#f59e0b;
+          --border:#e2e8f0;
+          --white:#ffffff;
         }
 
-        .snaa-display {
-          font-family: 'Playfair Display', serif;
+        .snaa-root{
+          font-family:'Inter',sans-serif;
+          background:var(--white);
+          color:var(--navy);
         }
 
-        @keyframes fadeInUp {
+        .snaa-display{
+          font-family:'Playfair Display',serif;
+        }
+
+        @keyframes fadeUp {
           from {
-            opacity: 0;
-            transform: translateY(18px);
+            opacity:0;
+            transform:translateY(30px);
           }
           to {
-            opacity: 1;
-            transform: translateY(0);
+            opacity:1;
+            transform:translateY(0);
           }
+        }
+
+        @keyframes zoomSoft {
+          from {
+            opacity:0;
+            transform:scale(1.04);
+          }
+          to {
+            opacity:1;
+            transform:scale(1);
+          }
+        }
+
+        @keyframes floatY {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+          100% { transform: translateY(0px); }
         }
 
         .reveal {
           opacity: 0;
-          animation: fadeInUp 0.8s ease forwards;
+          animation: fadeUp .9s ease forwards;
         }
 
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
+        .reveal-1 { animation-delay: .08s; }
+        .reveal-2 { animation-delay: .18s; }
+        .reveal-3 { animation-delay: .28s; }
+        .reveal-4 { animation-delay: .38s; }
 
-        .hero-orb {
-          position: absolute;
-          border-radius: 50%;
-          pointer-events: none;
-          filter: blur(2px);
+        .zoom-soft {
+          animation: zoomSoft 1.1s ease forwards;
         }
 
-        .gold-bar {
-          width: 64px;
-          height: 3px;
-          border-radius: 999px;
-          background: linear-gradient(90deg, #f59e0b, #fde68a);
-          margin: 0 auto 20px;
+        .float-soft {
+          animation: floatY 6s ease-in-out infinite;
         }
 
-        .sec-label {
-          font-size: 11px;
-          font-weight: 700;
-          letter-spacing: 0.18em;
-          text-transform: uppercase;
-          color: #1d4ed8;
-          margin-bottom: 10px;
+        .section-label{
+          font-size:11px;
+          font-weight:700;
+          letter-spacing:.18em;
+          text-transform:uppercase;
+          color:var(--blue);
+          margin-bottom:10px;
         }
 
-        .section-heading {
-          font-size: clamp(1.8rem, 3vw, 2.6rem);
-          font-weight: 700;
-          color: #0f172a;
-          text-align: center;
-          margin-bottom: 14px;
+        .section-title{
+          font-size:clamp(1.8rem,3vw,2.7rem);
+          font-weight:700;
+          color:var(--navy);
+          text-align:center;
+          margin-bottom:14px;
         }
 
-        .section-sub {
-          color: #64748b;
-          font-size: 15px;
-          line-height: 1.8;
-          text-align: center;
-          max-width: 720px;
-          margin: 0 auto 46px;
+        .section-sub{
+          color:var(--muted);
+          font-size:15px;
+          line-height:1.85;
+          text-align:center;
+          max-width:740px;
+          margin:0 auto 48px;
+        }
+
+        .grad-line{
+          height:1px;
+          max-width:960px;
+          margin:0 auto;
+          background:linear-gradient(90deg,transparent,rgba(29,78,216,.18),transparent);
+        }
+
+        .primary-btn{
+          display:inline-flex;
+          align-items:center;
+          gap:8px;
+          border:none;
+          border-radius:999px;
+          padding:14px 28px;
+          font-size:14px;
+          font-weight:600;
+          background:var(--gold);
+          color:#111827;
+          cursor:pointer;
+          transition:all .25s ease;
+          box-shadow:0 14px 30px rgba(245,158,11,.24);
+        }
+
+        .primary-btn:hover{
+          transform:translateY(-3px);
+          background:#fbbf24;
+        }
+
+        .secondary-btn{
+          display:inline-flex;
+          align-items:center;
+          gap:8px;
+          border:1px solid rgba(255,255,255,.2);
+          border-radius:999px;
+          padding:13px 24px;
+          font-size:14px;
+          font-weight:600;
+          background:rgba(255,255,255,.08);
+          color:#fff;
+          cursor:pointer;
+          transition:all .25s ease;
+          backdrop-filter:blur(10px);
+        }
+
+        .secondary-btn:hover{
+          transform:translateY(-2px);
+          background:rgba(255,255,255,.14);
+        }
+
+        .hero-section{
+          position:relative;
+          overflow:hidden;
+          padding:110px 0 120px;
+          background:
+            linear-gradient(rgba(15,23,42,.78), rgba(15,23,42,.62)),
+            url('https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+        }
+
+        .hero-orb{
+          position:absolute;
+          border-radius:50%;
+          pointer-events:none;
+          filter:blur(2px);
+        }
+
+        .hero-badge{
+          display:inline-flex;
+          align-items:center;
+          gap:8px;
+          padding:8px 14px;
+          border-radius:999px;
+          background:rgba(255,255,255,.08);
+          border:1px solid rgba(255,255,255,.14);
+          color:#dbeafe;
+          font-size:12px;
+          font-weight:600;
+          margin-bottom:18px;
+          backdrop-filter:blur(12px);
+        }
+
+        .gold-bar{
+          width:68px;
+          height:3px;
+          border-radius:999px;
+          background:linear-gradient(90deg,#f59e0b,#fde68a);
+          margin:0 auto 22px;
+        }
+
+        .glass-panel{
+          background:rgba(255,255,255,.08);
+          border:1px solid rgba(255,255,255,.12);
+          box-shadow:0 20px 50px rgba(0,0,0,.18);
+          backdrop-filter:blur(14px);
+          border-radius:24px;
+          padding:28px 24px;
         }
 
         .stat-card,
         .div-card,
         .why-card,
         .role-pill,
-        .loc-card {
-          transition: all 0.25s ease;
+        .loc-card,
+        .feature-mini{
+          transition:all .28s ease;
         }
 
-        .stat-card {
-          border-radius: 18px;
-          background: #ffffff;
-          border: 1px solid #e5e7eb;
-          padding: 28px 20px;
-          text-align: center;
-          box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+        .stat-card{
+          border-radius:18px;
+          background:#fff;
+          border:1px solid var(--border);
+          padding:30px 20px;
+          text-align:center;
+          box-shadow:0 8px 24px rgba(15,23,42,.05);
         }
 
-        .stat-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
+        .stat-card:hover{
+          transform:translateY(-6px);
+          box-shadow:0 18px 34px rgba(15,23,42,.09);
         }
 
-        .div-card {
-          border-radius: 18px;
-          background: #ffffff;
-          border: 1px solid #e5e7eb;
-          padding: 30px 26px;
-          box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+        .div-card{
+          border-radius:20px;
+          background:#fff;
+          border:1px solid var(--border);
+          padding:30px 26px;
+          box-shadow:0 8px 24px rgba(15,23,42,.05);
         }
 
-        .div-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 18px 34px rgba(15, 23, 42, 0.08);
+        .div-card:hover{
+          transform:translateY(-6px);
+          box-shadow:0 18px 34px rgba(15,23,42,.09);
         }
 
         .div-icon,
-        .why-icon {
-          width: 52px;
-          height: 52px;
-          border-radius: 14px;
-          background: #eff6ff;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-bottom: 18px;
+        .why-icon,
+        .mini-icon{
+          width:54px;
+          height:54px;
+          border-radius:16px;
+          background:#eff6ff;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          margin-bottom:18px;
         }
 
         .div-icon svg,
-        .why-icon svg {
-          color: #1d4ed8;
+        .why-icon svg,
+        .mini-icon svg{
+          color:var(--blue);
         }
 
-        .sector-tag {
-          border-radius: 999px;
-          padding: 9px 18px;
-          font-size: 13px;
-          font-weight: 500;
-          border: 1px solid rgba(255,255,255,0.18);
-          color: #dbeafe;
-          background: rgba(255,255,255,0.04);
+        .parallax-band{
+          position:relative;
+          overflow:hidden;
+          background:
+            linear-gradient(rgba(15,23,42,.82), rgba(30,58,138,.85)),
+            url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+          padding:78px 0;
         }
 
-        .why-card {
-          border-radius: 18px;
-          border: 1px solid #e5e7eb;
-          background: #ffffff;
-          padding: 30px 24px;
-          text-align: center;
-          box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+        .sector-tag{
+          border-radius:999px;
+          padding:9px 18px;
+          font-size:13px;
+          font-weight:500;
+          color:#dbeafe;
+          border:1px solid rgba(255,255,255,.18);
+          background:rgba(255,255,255,.05);
+          transition:all .25s ease;
         }
 
-        .why-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 18px 34px rgba(15, 23, 42, 0.08);
+        .sector-tag:hover{
+          transform:translateY(-2px);
+          background:rgba(255,255,255,.1);
         }
 
-        .why-icon {
-          margin: 0 auto 18px;
+        .why-card{
+          border-radius:20px;
+          border:1px solid var(--border);
+          background:#fff;
+          padding:30px 24px;
+          text-align:center;
+          box-shadow:0 8px 24px rgba(15,23,42,.05);
         }
 
-        .role-pill {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          border-radius: 14px;
-          border: 1px solid #e5e7eb;
-          background: #ffffff;
-          padding: 16px 18px;
-          box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04);
+        .why-card:hover{
+          transform:translateY(-6px);
+          box-shadow:0 18px 34px rgba(15,23,42,.09);
         }
 
-        .role-pill:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+        .role-pill{
+          display:flex;
+          align-items:center;
+          gap:12px;
+          border-radius:16px;
+          border:1px solid var(--border);
+          background:#fff;
+          padding:16px 18px;
+          box-shadow:0 6px 18px rgba(15,23,42,.04);
         }
 
-        .loc-card {
-          flex: 1;
-          min-width: 280px;
-          border-radius: 18px;
-          border: 1px solid #e5e7eb;
-          background: #ffffff;
-          padding: 24px 20px;
-          box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+        .role-pill:hover{
+          transform:translateY(-4px);
+          box-shadow:0 14px 28px rgba(15,23,42,.08);
         }
 
-        .loc-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
+        .feature-mini{
+          border-radius:18px;
+          border:1px solid rgba(255,255,255,.12);
+          background:rgba(255,255,255,.08);
+          padding:18px;
+          text-align:left;
         }
 
-        .primary-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          border-radius: 999px;
-          padding: 14px 28px;
-          font-size: 14px;
-          font-weight: 600;
-          background: #f59e0b;
-          color: #0f172a;
-          border: none;
-          cursor: pointer;
-          transition: all 0.25s ease;
-          box-shadow: 0 12px 28px rgba(245, 158, 11, 0.22);
+        .feature-mini:hover{
+          transform:translateY(-3px);
+          background:rgba(255,255,255,.11);
         }
 
-        .primary-btn:hover {
-          transform: translateY(-2px);
-          background: #fbbf24;
+        .loc-card{
+          flex:1;
+          min-width:280px;
+          border-radius:20px;
+          border:1px solid var(--border);
+          background:#fff;
+          padding:24px 20px;
+          box-shadow:0 8px 24px rgba(15,23,42,.05);
         }
 
-        .secondary-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          border-radius: 999px;
-          padding: 13px 24px;
-          font-size: 14px;
-          font-weight: 600;
-          background: rgba(255,255,255,0.1);
-          color: #ffffff;
-          border: 1px solid rgba(255,255,255,0.22);
-          cursor: pointer;
-          transition: all 0.25s ease;
+        .loc-card:hover{
+          transform:translateY(-5px);
+          box-shadow:0 18px 34px rgba(15,23,42,.09);
         }
 
-        .secondary-btn:hover {
-          background: rgba(255,255,255,0.16);
-          transform: translateY(-2px);
+        .cta-section{
+          position:relative;
+          overflow:hidden;
+          padding:86px 0;
+          background:
+            linear-gradient(135deg, rgba(30,58,138,.95), rgba(37,99,235,.92)),
+            url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
         }
 
-        .grad-div {
-          height: 1px;
-          background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.18), transparent);
-          margin: 0 auto;
-          max-width: 960px;
+        @media (max-width: 768px){
+          .hero-section{
+            padding-top:90px;
+            padding-bottom:90px;
+          }
         }
       `}</style>
 
@@ -318,107 +433,157 @@ export default function Index() {
         <PublicHeader />
 
         <main className="flex-1">
-          <section
-            style={{
-              background: "linear-gradient(135deg,#0f172a 0%,#1e3a8a 58%,#2563eb 100%)",
-              position: "relative",
-              overflow: "hidden",
-              paddingTop: "112px",
-              paddingBottom: "120px",
-            }}
-          >
+          <section className="hero-section">
             <div
-              className="hero-orb"
+              className="hero-orb float-soft"
               style={{
-                width: 520,
-                height: 520,
-                border: "1px solid rgba(255,255,255,0.05)",
-                top: -180,
-                right: -120,
+                width: 420,
+                height: 420,
+                top: -140,
+                right: -80,
+                background: "rgba(245,158,11,.08)",
               }}
             />
             <div
-              className="hero-orb"
+              className="hero-orb float-soft"
               style={{
-                width: 260,
-                height: 260,
-                background: "rgba(245,158,11,0.08)",
-                bottom: -60,
-                left: -40,
+                width: 280,
+                height: 280,
+                bottom: -80,
+                left: -60,
+                border: "1px solid rgba(255,255,255,.08)",
               }}
             />
 
-            <div className="container mx-auto px-4 text-center" style={{ position: "relative" }}>
-              <p
-                className="reveal delay-1"
-                style={{
-                  fontSize: 11,
-                  fontWeight: 700,
-                  letterSpacing: "0.2em",
-                  textTransform: "uppercase",
-                  color: "#f59e0b",
-                  marginBottom: 16,
-                }}
-              >
-                Back Office Operations · GBMT Group, Dubai
-              </p>
+            <div className="container mx-auto px-4" style={{ position: "relative" }}>
+              <div style={{ maxWidth: 980, margin: "0 auto", textAlign: "center" }}>
+                <div className="hero-badge reveal reveal-1">
+                  <Award size={14} />
+                  Supporting GBMT Group, Dubai
+                </div>
 
-              <div className="gold-bar reveal delay-2" />
+                <div className="gold-bar reveal reveal-2" />
 
-              <h1
-                className="snaa-display reveal delay-2"
-                style={{
-                  fontSize: "clamp(2.8rem,6vw,4.7rem)",
-                  fontWeight: 800,
-                  color: "#ffffff",
-                  lineHeight: 1.1,
-                  marginBottom: 14,
-                }}
-              >
-                Build Your Career with SNAA
-              </h1>
+                <h1
+                  className="snaa-display reveal reveal-2"
+                  style={{
+                    fontSize: "clamp(2.6rem,6vw,4.8rem)",
+                    fontWeight: 800,
+                    color: "#fff",
+                    lineHeight: 1.08,
+                    marginBottom: 18,
+                  }}
+                >
+                  SNAA Business Processing Centre
+                </h1>
 
-              <p
-                className="reveal delay-3"
-                style={{
-                  color: "rgba(255,255,255,0.78)",
-                  fontSize: 16,
-                  lineHeight: 1.8,
-                  maxWidth: 700,
-                  margin: "0 auto 36px",
-                }}
-              >
-                SNAA Business Processing Centre is the India back-office operations hub of GBMT Group, Dubai — supporting international business functions with reliability, precision, and professionalism.
-              </p>
+                <p
+                  className="reveal reveal-3"
+                  style={{
+                    color: "rgba(255,255,255,.84)",
+                    fontSize: 17,
+                    lineHeight: 1.85,
+                    maxWidth: 760,
+                    margin: "0 auto 34px",
+                  }}
+                >
+                  The dedicated back-office operations arm of GBMT Group, Dubai —
+                  delivering dependable support across finance, HR, data processing,
+                  and business administration from Mangalore, India.
+                </p>
 
-              <Link to="/careers">
-                <button className="primary-btn reveal delay-4">
-                  View Open Positions <ArrowRight size={16} />
-                </button>
-              </Link>
+                <div className="reveal reveal-4" style={{ marginBottom: 34 }}>
+                  <Link to="/careers">
+                    <button className="primary-btn">
+                      View Open Positions <ArrowRight size={16} />
+                    </button>
+                  </Link>
+                </div>
+
+                <div
+                  className="glass-panel zoom-soft"
+                  style={{
+                    maxWidth: 900,
+                    margin: "0 auto",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))",
+                      gap: 18,
+                    }}
+                  >
+                    <div className="feature-mini">
+                      <div className="mini-icon">
+                        <Layers3 size={22} />
+                      </div>
+                      <h3 style={{ color: "#fff", fontSize: 15, fontWeight: 700, marginBottom: 8 }}>
+                        Operational Excellence
+                      </h3>
+                      <p style={{ color: "rgba(255,255,255,.76)", fontSize: 13, lineHeight: 1.7 }}>
+                        Structured support processes that strengthen global business operations.
+                      </p>
+                    </div>
+
+                    <div className="feature-mini">
+                      <div className="mini-icon">
+                        <Globe size={22} />
+                      </div>
+                      <h3 style={{ color: "#fff", fontSize: 15, fontWeight: 700, marginBottom: 8 }}>
+                        Global Alignment
+                      </h3>
+                      <p style={{ color: "rgba(255,255,255,.76)", fontSize: 13, lineHeight: 1.7 }}>
+                        Supporting teams and workflows connected to the UAE, Qatar, and GCC markets.
+                      </p>
+                    </div>
+
+                    <div className="feature-mini">
+                      <div className="mini-icon">
+                        <Users size={22} />
+                      </div>
+                      <h3 style={{ color: "#fff", fontSize: 15, fontWeight: 700, marginBottom: 8 }}>
+                        Professional Team
+                      </h3>
+                      <p style={{ color: "rgba(255,255,255,.76)", fontSize: 13, lineHeight: 1.7 }}>
+                        Built on discipline, collaboration, and long-term growth.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
 
-          <section style={{ padding: "80px 0", background: "#ffffff" }}>
-            <div className="container mx-auto px-4" style={{ maxWidth: 820, textAlign: "center" }}>
-              <p className="sec-label">Who We Are</p>
-              <h2 className="snaa-display section-heading">
+          <section style={{ padding: "84px 0", background: "#fff" }}>
+            <div className="container mx-auto px-4" style={{ maxWidth: 860, textAlign: "center" }}>
+              <p className="section-label">Who We Are</p>
+              <h2 className="snaa-display section-title">
                 About SNAA Business Processing Centre
               </h2>
-              <p style={{ color: "#475569", lineHeight: 1.85, fontSize: 15 }}>
-                SNAA Business Processing Centre Pvt. Ltd., headquartered in Mangalore, Karnataka, is the dedicated business support arm of GBMT Group, Dubai. We manage critical back-office functions including data operations, HR support, finance processing, and administrative workflows that strengthen GBMT’s international presence across the UAE, Qatar, and the wider region.
+              <p style={{ color: "#475569", lineHeight: 1.9, fontSize: 15 }}>
+                SNAA Business Processing Centre Pvt. Ltd., headquartered in Mangalore,
+                Karnataka, serves as the dedicated business support arm of GBMT Group,
+                Dubai. We manage essential back-office functions such as HR support,
+                finance processing, data operations, and administrative coordination —
+                helping power efficient international operations with consistency,
+                professionalism, and reliability.
               </p>
             </div>
           </section>
 
-          <div className="grad-div" />
+          <div className="grad-line" />
 
-          <section style={{ padding: "80px 0", background: "#f8fafc" }}>
+          <section style={{ padding: "84px 0", background: "#f8fafc" }}>
             <div className="container mx-auto px-4">
-              <p className="sec-label" style={{ textAlign: "center" }}>Our Parent Company</p>
-              <h2 className="snaa-display section-heading">GBMT Group, Dubai</h2>
+              <p className="section-label" style={{ textAlign: "center" }}>
+                Our Parent Company
+              </p>
+              <h2 className="snaa-display section-title">GBMT Group, Dubai</h2>
               <p className="section-sub">
-                Established in 2000, GBMT Group has grown into a recognized structural steel stockist and manufacturer serving construction, oil & gas, and industrial sectors across the GCC and MENA region.
+                Established in 2000, GBMT Group has grown into a recognized structural
+                steel stockist and manufacturer serving construction, oil & gas,
+                engineering, fabrication, and industrial sectors across the GCC and MENA region.
               </p>
 
               <div
@@ -426,7 +591,7 @@ export default function Index() {
                   display: "grid",
                   gridTemplateColumns: "repeat(auto-fit,minmax(180px,1fr))",
                   gap: 20,
-                  maxWidth: 960,
+                  maxWidth: 980,
                   margin: "0 auto",
                 }}
               >
@@ -434,19 +599,16 @@ export default function Index() {
                   <div key={label} className="stat-card">
                     <p
                       className="snaa-display"
-                      style={{ fontSize: 34, fontWeight: 800, color: "#1d4ed8" }}
+                      style={{
+                        fontSize: 34,
+                        fontWeight: 800,
+                        color: "#1d4ed8",
+                      }}
                     >
                       {value}
                     </p>
                     <p style={{ fontSize: 12, color: "#94a3b8", marginTop: 4 }}>{sub}</p>
-                    <p
-                      style={{
-                        fontSize: 13,
-                        fontWeight: 600,
-                        color: "#0f172a",
-                        marginTop: 8,
-                      }}
-                    >
+                    <p style={{ fontSize: 13, fontWeight: 600, color: "#0f172a", marginTop: 8 }}>
                       {label}
                     </p>
                   </div>
@@ -455,10 +617,15 @@ export default function Index() {
             </div>
           </section>
 
-          <section style={{ padding: "80px 0", background: "#ffffff" }}>
+          <section style={{ padding: "84px 0", background: "#fff" }}>
             <div className="container mx-auto px-4">
-              <p className="sec-label" style={{ textAlign: "center" }}>Business Divisions</p>
-              <h2 className="snaa-display section-heading">GBMT Group — Core Operations</h2>
+              <p className="section-label" style={{ textAlign: "center" }}>
+                Business Divisions
+              </p>
+              <h2 className="snaa-display section-title">GBMT Group — Core Operations</h2>
+              <p className="section-sub">
+                A diversified steel-focused business with strong manufacturing, stockholding, and supply capabilities.
+              </p>
 
               <div
                 style={{
@@ -474,17 +641,10 @@ export default function Index() {
                     <div className="div-icon">
                       <Icon size={24} />
                     </div>
-                    <h3
-                      style={{
-                        fontSize: 16,
-                        fontWeight: 700,
-                        color: "#0f172a",
-                        marginBottom: 10,
-                      }}
-                    >
+                    <h3 style={{ fontSize: 16, fontWeight: 700, color: "#0f172a", marginBottom: 10 }}>
                       {title}
                     </h3>
-                    <p style={{ fontSize: 14, color: "#64748b", lineHeight: 1.75 }}>
+                    <p style={{ fontSize: 14, color: "#64748b", lineHeight: 1.8 }}>
                       {desc}
                     </p>
                   </div>
@@ -493,38 +653,43 @@ export default function Index() {
             </div>
           </section>
 
-          <section
-            style={{
-              padding: "76px 0",
-              background: "linear-gradient(135deg,#0f172a,#1e3a8a)",
-            }}
-          >
+          <section className="parallax-band">
             <div className="container mx-auto px-4 text-center">
               <p
                 style={{
                   fontSize: 11,
                   fontWeight: 700,
-                  letterSpacing: "0.2em",
+                  letterSpacing: ".18em",
                   textTransform: "uppercase",
                   color: "#f59e0b",
                   marginBottom: 8,
                 }}
               >
-                Industries
+                Industries We Serve
               </p>
+
               <h2
                 className="snaa-display"
                 style={{
-                  fontSize: "clamp(1.8rem,3vw,2.4rem)",
+                  fontSize: "clamp(1.8rem,3vw,2.5rem)",
                   fontWeight: 700,
-                  color: "#ffffff",
-                  marginBottom: 12,
+                  color: "#fff",
+                  marginBottom: 14,
                 }}
               >
-                Industries We Serve
+                Supporting Demanding Industrial Sectors
               </h2>
-              <p style={{ fontSize: 14, color: "#cbd5e1", marginBottom: 36 }}>
-                Our products support demanding industrial and infrastructure sectors across multiple regions.
+
+              <p
+                style={{
+                  color: "rgba(255,255,255,.78)",
+                  fontSize: 14,
+                  maxWidth: 720,
+                  margin: "0 auto 36px",
+                  lineHeight: 1.8,
+                }}
+              >
+                GBMT Group’s products and services are trusted across diverse sectors requiring scale, strength, and reliability.
               </p>
 
               <div
@@ -546,10 +711,15 @@ export default function Index() {
             </div>
           </section>
 
-          <section style={{ padding: "80px 0", background: "#ffffff" }}>
+          <section style={{ padding: "84px 0", background: "#fff" }}>
             <div className="container mx-auto px-4">
-              <p className="sec-label" style={{ textAlign: "center" }}>Career Benefits</p>
-              <h2 className="snaa-display section-heading">Why Join SNAA?</h2>
+              <p className="section-label" style={{ textAlign: "center" }}>
+                Career Benefits
+              </p>
+              <h2 className="snaa-display section-title">Why Join SNAA?</h2>
+              <p className="section-sub">
+                A workplace designed for professionals seeking stability, development, and meaningful contribution.
+              </p>
 
               <div
                 style={{
@@ -562,20 +732,13 @@ export default function Index() {
               >
                 {whyJoin.map(({ icon: Icon, title, desc }) => (
                   <div key={title} className="why-card">
-                    <div className="why-icon">
+                    <div className="why-icon" style={{ margin: "0 auto 18px" }}>
                       <Icon size={24} />
                     </div>
-                    <h3
-                      style={{
-                        fontSize: 16,
-                        fontWeight: 700,
-                        color: "#0f172a",
-                        marginBottom: 10,
-                      }}
-                    >
+                    <h3 style={{ fontSize: 16, fontWeight: 700, color: "#0f172a", marginBottom: 10 }}>
                       {title}
                     </h3>
-                    <p style={{ fontSize: 14, color: "#64748b", lineHeight: 1.75 }}>
+                    <p style={{ fontSize: 14, color: "#64748b", lineHeight: 1.8 }}>
                       {desc}
                     </p>
                   </div>
@@ -584,12 +747,14 @@ export default function Index() {
             </div>
           </section>
 
-          <section style={{ padding: "80px 0", background: "#f8fafc" }}>
-            <div className="container mx-auto px-4" style={{ maxWidth: 760 }}>
-              <p className="sec-label" style={{ textAlign: "center" }}>Opportunities</p>
-              <h2 className="snaa-display section-heading">Roles We Commonly Hire For</h2>
+          <section style={{ padding: "84px 0", background: "#f8fafc" }}>
+            <div className="container mx-auto px-4" style={{ maxWidth: 780 }}>
+              <p className="section-label" style={{ textAlign: "center" }}>
+                Opportunities
+              </p>
+              <h2 className="snaa-display section-title">Roles We Commonly Hire For</h2>
               <p className="section-sub" style={{ marginBottom: 34 }}>
-                Explore the types of roles frequently available at our Mangalore operations centre.
+                Explore the types of roles frequently available within our Mangalore operations team.
               </p>
 
               <div
@@ -601,18 +766,8 @@ export default function Index() {
               >
                 {roles.map((role) => (
                   <div key={role} className="role-pill">
-                    <CheckCircle2
-                      size={18}
-                      style={{ color: "#1d4ed8", flexShrink: 0 }}
-                    />
-                    <span
-                      style={{
-                        fontSize: 14,
-                        fontWeight: 600,
-                        color: "#0f172a",
-                        flex: 1,
-                      }}
-                    >
+                    <CheckCircle2 size={18} style={{ color: "#1d4ed8", flexShrink: 0 }} />
+                    <span style={{ fontSize: 14, fontWeight: 600, color: "#0f172a", flex: 1 }}>
                       {role}
                     </span>
                   </div>
@@ -621,7 +776,7 @@ export default function Index() {
             </div>
           </section>
 
-          <section style={{ padding: "70px 0", background: "#ffffff" }}>
+          <section style={{ padding: "72px 0", background: "#fff" }}>
             <div className="container mx-auto px-4">
               <h2
                 className="snaa-display"
@@ -663,17 +818,10 @@ export default function Index() {
                       <MapPin size={18} style={{ color: "#1d4ed8" }} />
                     </div>
                     <div>
-                      <p
-                        style={{
-                          fontSize: 14,
-                          fontWeight: 700,
-                          color: "#0f172a",
-                          marginBottom: 6,
-                        }}
-                      >
+                      <p style={{ fontSize: 14, fontWeight: 700, color: "#0f172a", marginBottom: 6 }}>
                         SNAA Business Processing Centre Pvt. Ltd.
                       </p>
-                      <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.7 }}>
+                      <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.75 }}>
                         No. C-03-02, Plama Center, 3rd Floor
                         <br />
                         Bejai Kapikad Road, Mangalore – 575004
@@ -701,17 +849,10 @@ export default function Index() {
                       <Building2 size={18} style={{ color: "#1d4ed8" }} />
                     </div>
                     <div>
-                      <p
-                        style={{
-                          fontSize: 14,
-                          fontWeight: 700,
-                          color: "#0f172a",
-                          marginBottom: 6,
-                        }}
-                      >
+                      <p style={{ fontSize: 14, fontWeight: 700, color: "#0f172a", marginBottom: 6 }}>
                         GBMT Group
                       </p>
-                      <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.7 }}>
+                      <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.75 }}>
                         Dubai Investment Park
                         <br />
                         Dubai, United Arab Emirates
@@ -725,50 +866,46 @@ export default function Index() {
             </div>
           </section>
 
-          <section
-            style={{
-              padding: "82px 0",
-              background: "linear-gradient(135deg,#1e3a8a 0%,#2563eb 100%)",
-            }}
-          >
+          <section className="cta-section">
             <div className="container mx-auto px-4 text-center">
               <div
                 style={{
-                  width: 58,
-                  height: 58,
+                  width: 60,
+                  height: 60,
                   borderRadius: "50%",
-                  background: "rgba(255,255,255,0.12)",
+                  background: "rgba(255,255,255,.12)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   margin: "0 auto 20px",
+                  backdropFilter: "blur(10px)",
                 }}
               >
-                <Briefcase size={24} style={{ color: "#ffffff" }} />
+                <Briefcase size={26} style={{ color: "#fff" }} />
               </div>
 
               <h2
                 className="snaa-display"
                 style={{
-                  fontSize: "clamp(1.9rem,3.5vw,2.8rem)",
+                  fontSize: "clamp(1.9rem,3.5vw,2.9rem)",
                   fontWeight: 800,
-                  color: "#ffffff",
+                  color: "#fff",
                   marginBottom: 12,
                 }}
               >
-                Join a Team That Supports Global Operations
+                Explore Career Opportunities at SNAA
               </h2>
 
               <p
                 style={{
-                  color: "rgba(255,255,255,0.76)",
+                  color: "rgba(255,255,255,.8)",
                   fontSize: 15,
-                  lineHeight: 1.8,
+                  lineHeight: 1.85,
                   maxWidth: 560,
                   margin: "0 auto 34px",
                 }}
               >
-                Discover career opportunities with SNAA and contribute to a business that supports international excellence from Mangalore.
+                Discover opportunities to grow with a team that supports global operations with professionalism and consistency.
               </p>
 
               <Link to="/careers">
