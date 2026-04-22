@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+Allow: /careers
+Disallow: /admin-staff
+Disallow: /admin-staff/
 
+# Sitemap location
 Sitemap: https://snaa-job-openings.vercel.app/sitemap.xml
