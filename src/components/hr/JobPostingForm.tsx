@@ -22,6 +22,7 @@ const JobPostingForm = () => {
     workType: "On-site",
     description: "",
     requirements: "",
+    contactDetails: "",
   });
 
   const createJob = useMutation({
@@ -32,7 +33,11 @@ const JobPostingForm = () => {
         location: form.location,
         type: form.type,
         description: form.description,
-        requirements: form.requirements || null,
+        requirements: [
+          form.workType ? `Work Type: ${form.workType}` : "",
+          form.requirements ? `Other Details: ${form.requirements}` : "",
+          form.contactDetails ? `Contact: ${form.contactDetails}` : "",
+        ].filter(Boolean).join("\n") || null,
       });
       if (error) throw error;
     },
@@ -40,7 +45,7 @@ const JobPostingForm = () => {
       queryClient.invalidateQueries({ queryKey: ["hr-jobs"] });
       toast({ title: "Job posted successfully" });
       setOpen(false);
-      setForm({ title: "", department: "", location: "", type: "Full-time", workType: "On-site", description: "", requirements: "" });
+      setForm({ title: "", department: "", location: "", type: "Full-time", workType: "On-site", description: "", requirements: "", contactDetails: "" });
     },
     onError: (err: any) => {
       toast({ title: "Error", description: err.message, variant: "destructive" });
@@ -68,6 +73,7 @@ const JobPostingForm = () => {
           <DialogTitle className="font-heading">Post a New Job Opening</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 pt-2">
+
           <div className="space-y-2">
             <Label htmlFor="job-title">Job Title *</Label>
             <Input id="job-title" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} placeholder="e.g. Senior Accountant" />
@@ -121,7 +127,12 @@ const JobPostingForm = () => {
 
           <div className="space-y-2">
             <Label htmlFor="requirements">Other Details</Label>
-            <Textarea id="requirements" value={form.requirements} onChange={(e) => setForm({ ...form, requirements: e.target.value })} placeholder="Any additional information, benefits, salary range, etc..." rows={3} />
+            <Textarea id="requirements" value={form.requirements} onChange={(e) => setForm({ ...form, requirements: e.target.value })} placeholder="Any additional information, benefits, salary range, etc..." rows={2} />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="contactDetails">Contact Details</Label>
+            <Input id="contactDetails" value={form.contactDetails} onChange={(e) => setForm({ ...form, contactDetails: e.target.value })} placeholder="e.g. hr@snaa.com or +91 9876543210" />
           </div>
 
           <Button type="submit" disabled={createJob.isPending} className="w-full">

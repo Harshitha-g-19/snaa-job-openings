@@ -75,18 +75,34 @@ const HRDashboard = () => {
     },
   });
 
-  // ✅ NEW: Delete mutation
   const deleteApplication = useMutation({
     mutationFn: async (id: string) => {
-      const { error } = await supabase.from("job_applications").delete().eq("id", id);
-      if (error) throw error;
+      // Use count to detect if RLS silently blocked the delete
+      const { error, count } = await supabase
+        .from("job_applications")
+        .delete({ count: "exact" })
+        .eq("id", id);
+
+      if (error) throw new Error(error.message);
+
+      // If count is 0, RLS blocked it silently — throw so onError fires
+      if (count === 0) {
+        throw new Error("RLS_BLOCKED");
+      }
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["hr-applications"] });
-      toast({ title: "Application deleted", variant: "destructive" });
+      toast({ title: "Application deleted successfully" });
     },
-    onError: () => {
-      toast({ title: "Delete failed", description: "Could not delete the application.", variant: "destructive" });
+    onError: (err: any) => {
+      const isRLS = err?.message === "RLS_BLOCKED";
+      toast({
+        title: "Delete failed",
+        description: isRLS
+          ? "Permission denied. Please enable DELETE policy for job_applications in Supabase → Authentication → Policies."
+          : "Could not delete the application. Try again.",
+        variant: "destructive",
+      });
     },
   });
 
@@ -269,7 +285,6 @@ const HRDashboard = () => {
                                   </SelectContent>
                                 </Select>
 
-                                {/* ✅ NEW: Delete button with confirmation */}
                                 <AlertDialog>
                                   <AlertDialogTrigger asChild>
                                     <Button
