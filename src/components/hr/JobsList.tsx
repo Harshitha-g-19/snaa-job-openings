@@ -14,6 +14,8 @@ interface Job {
   department: string;
   location: string;
   type: string;
+  requirements?: string | null;
+  description?: string | null;
   is_active: boolean;
   created_at: string;
 }
@@ -62,7 +64,13 @@ const JobsList = ({ jobs }: { jobs: Job[] | undefined }) => {
                     <TableCell className="text-sm">{job.location}</TableCell>
                     <TableCell className="text-sm">{job.type}</TableCell>
                     <TableCell>
-                      <Badge className={`border-0 text-xs ${job.is_active ? "bg-green-100 text-green-800" : "bg-muted text-muted-foreground"}`}>
+                      <Badge
+                        className={`border-0 text-xs ${
+                          job.is_active
+                            ? "bg-green-100 text-green-800"
+                            : "bg-muted text-muted-foreground"
+                        }`}
+                      >
                         {job.is_active ? "Active" : "Inactive"}
                       </Badge>
                     </TableCell>
@@ -70,21 +78,35 @@ const JobsList = ({ jobs }: { jobs: Job[] | undefined }) => {
                       {new Date(job.created_at).toLocaleDateString()}
                     </TableCell>
                     <TableCell>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="gap-1 text-xs"
-                        onClick={() => toggleActive.mutate({ id: job.id, is_active: !job.is_active })}
-                      >
-                        {job.is_active ? <ToggleRight className="h-4 w-4 text-green-600" /> : <ToggleLeft className="h-4 w-4" />}
-                        {job.is_active ? "Deactivate" : "Activate"}
-                      </Button>
+                      <div className="flex items-center gap-1">
+                        {/* Edit button — opens the form pre-filled with this job's data */}
+                        <JobPostingForm job={job} />
+
+                        {/* Toggle active/inactive */}
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="gap-1 text-xs"
+                          onClick={() =>
+                            toggleActive.mutate({ id: job.id, is_active: !job.is_active })
+                          }
+                        >
+                          {job.is_active ? (
+                            <ToggleRight className="h-4 w-4 text-green-600" />
+                          ) : (
+                            <ToggleLeft className="h-4 w-4" />
+                          )}
+                          {job.is_active ? "Deactivate" : "Activate"}
+                        </Button>
+                      </div>
                     </TableCell>
                   </TableRow>
                 ))
               ) : (
                 <TableRow>
-                  <TableCell colSpan={7} className="text-center py-8 text-muted-foreground">No job openings yet</TableCell>
+                  <TableCell colSpan={7} className="text-center py-8 text-muted-foreground">
+                    No job openings yet
+                  </TableCell>
                 </TableRow>
               )}
             </TableBody>
