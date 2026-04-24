@@ -9,13 +9,8 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  AlertDialog, AlertDialogAction, AlertDialogCancel,
-  AlertDialogContent, AlertDialogDescription, AlertDialogFooter,
-  AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
 import { useToast } from "@/hooks/use-toast";
-import { LogOut, Search, Download, Eye, Users, Briefcase, FileText, Clock, Trash2 } from "lucide-react";
+import { LogOut, Search, Download, Eye, Users, Briefcase, FileText, Clock } from "lucide-react";
 import JobsList from "@/components/hr/JobsList";
 
 const statusColors: Record<string, string> = {
@@ -72,21 +67,6 @@ const HRDashboard = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["hr-applications"] });
       toast({ title: "Status updated" });
-    },
-  });
-
-  // ✅ NEW: Delete mutation
-  const deleteApplication = useMutation({
-    mutationFn: async (id: string) => {
-      const { error } = await supabase.from("job_applications").delete().eq("id", id);
-      if (error) throw error;
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["hr-applications"] });
-      toast({ title: "Application deleted", variant: "destructive" });
-    },
-    onError: () => {
-      toast({ title: "Delete failed", description: "Could not delete the application.", variant: "destructive" });
     },
   });
 
@@ -255,50 +235,18 @@ const HRDashboard = () => {
                               )}
                             </TableCell>
                             <TableCell>
-                              <div className="flex items-center gap-2">
-                                <Select value={app.status} onValueChange={(val) => updateStatus.mutate({ id: app.id, status: val })}>
-                                  <SelectTrigger className="h-8 w-32 text-xs">
-                                    <SelectValue />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectItem value="new">New</SelectItem>
-                                    <SelectItem value="reviewing">Reviewing</SelectItem>
-                                    <SelectItem value="shortlisted">Shortlisted</SelectItem>
-                                    <SelectItem value="rejected">Rejected</SelectItem>
-                                    <SelectItem value="hired">Hired</SelectItem>
-                                  </SelectContent>
-                                </Select>
-
-                                {/* ✅ NEW: Delete button with confirmation */}
-                                <AlertDialog>
-                                  <AlertDialogTrigger asChild>
-                                    <Button
-                                      variant="ghost"
-                                      size="sm"
-                                      className="h-8 w-8 p-0 text-red-500 hover:text-red-700 hover:bg-red-50"
-                                    >
-                                      <Trash2 className="h-4 w-4" />
-                                    </Button>
-                                  </AlertDialogTrigger>
-                                  <AlertDialogContent>
-                                    <AlertDialogHeader>
-                                      <AlertDialogTitle>Delete Application</AlertDialogTitle>
-                                      <AlertDialogDescription>
-                                        Are you sure you want to delete <strong>{app.full_name}</strong>'s application? This action cannot be undone.
-                                      </AlertDialogDescription>
-                                    </AlertDialogHeader>
-                                    <AlertDialogFooter>
-                                      <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                      <AlertDialogAction
-                                        className="bg-red-600 hover:bg-red-700 text-white"
-                                        onClick={() => deleteApplication.mutate(app.id)}
-                                      >
-                                        Delete
-                                      </AlertDialogAction>
-                                    </AlertDialogFooter>
-                                  </AlertDialogContent>
-                                </AlertDialog>
-                              </div>
+                              <Select value={app.status} onValueChange={(val) => updateStatus.mutate({ id: app.id, status: val })}>
+                                <SelectTrigger className="h-8 w-32 text-xs">
+                                  <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="new">New</SelectItem>
+                                  <SelectItem value="reviewing">Reviewing</SelectItem>
+                                  <SelectItem value="shortlisted">Shortlisted</SelectItem>
+                                  <SelectItem value="rejected">Rejected</SelectItem>
+                                  <SelectItem value="hired">Hired</SelectItem>
+                                </SelectContent>
+                              </Select>
                             </TableCell>
                           </TableRow>
                         ))

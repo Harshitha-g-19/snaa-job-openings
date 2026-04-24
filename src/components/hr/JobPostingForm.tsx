@@ -17,8 +17,9 @@ const JobPostingForm = () => {
   const [form, setForm] = useState({
     title: "",
     department: "",
-    location: "Remote",
+    location: "",
     type: "Full-time",
+    workType: "On-site",
     description: "",
     requirements: "",
   });
@@ -39,7 +40,7 @@ const JobPostingForm = () => {
       queryClient.invalidateQueries({ queryKey: ["hr-jobs"] });
       toast({ title: "Job posted successfully" });
       setOpen(false);
-      setForm({ title: "", department: "", location: "Remote", type: "Full-time", description: "", requirements: "" });
+      setForm({ title: "", department: "", location: "", type: "Full-time", workType: "On-site", description: "", requirements: "" });
     },
     onError: (err: any) => {
       toast({ title: "Error", description: err.message, variant: "destructive" });
@@ -78,24 +79,39 @@ const JobPostingForm = () => {
               <Input id="department" value={form.department} onChange={(e) => setForm({ ...form, department: e.target.value })} placeholder="e.g. Finance" />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="location">Location</Label>
-              <Input id="location" value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} placeholder="e.g. Mumbai, India" />
+              <Label>Work Type</Label>
+              <Select value={form.workType} onValueChange={(val) => setForm({ ...form, workType: val })}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="On-site">On-site</SelectItem>
+                  <SelectItem value="Remote">Remote</SelectItem>
+                  <SelectItem value="Hybrid">Hybrid</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
 
-          <div className="space-y-2">
-            <Label>Employment Type</Label>
-            <Select value={form.type} onValueChange={(val) => setForm({ ...form, type: val })}>
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="Full-time">Full-time</SelectItem>
-                <SelectItem value="Part-time">Part-time</SelectItem>
-                <SelectItem value="Contract">Contract</SelectItem>
-                <SelectItem value="Internship">Internship</SelectItem>
-              </SelectContent>
-            </Select>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="space-y-2">
+              <Label>Employment Type</Label>
+              <Select value={form.type} onValueChange={(val) => setForm({ ...form, type: val })}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Full-time">Full-time</SelectItem>
+                  <SelectItem value="Part-time">Part-time</SelectItem>
+                  <SelectItem value="Contract">Contract</SelectItem>
+                  <SelectItem value="Internship">Internship</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="location">Location</Label>
+              <Input id="location" value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} placeholder="e.g. Mumbai, India" />
+            </div>
           </div>
 
           <div className="space-y-2">
@@ -104,8 +120,8 @@ const JobPostingForm = () => {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="requirements">Requirements</Label>
-            <Textarea id="requirements" value={form.requirements} onChange={(e) => setForm({ ...form, requirements: e.target.value })} placeholder="List qualifications and skills..." rows={3} />
+            <Label htmlFor="requirements">Other Details</Label>
+            <Textarea id="requirements" value={form.requirements} onChange={(e) => setForm({ ...form, requirements: e.target.value })} placeholder="Any additional information, benefits, salary range, etc..." rows={3} />
           </div>
 
           <Button type="submit" disabled={createJob.isPending} className="w-full">
