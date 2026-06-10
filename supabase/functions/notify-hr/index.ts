@@ -1,7 +1,8 @@
 import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
-const HR_EMAIL = "shilpashreesnaa@gmail.com";
+const HR_EMAIL = "shilpashreesnaa@gmail.com":
+
 
 serve(async (req: Request) => {
   try {
